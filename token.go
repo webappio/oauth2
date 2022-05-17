@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/davids-codex/oauth2/internal"
+	"github.com/webappio/oauth2/internal"
 )
 
 // expiryDelta determines how earlier a token should be considered
