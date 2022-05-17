@@ -13,7 +13,7 @@ import (
 	"net/url"
 	"testing"
 
-	"golang.org/x/oauth2/internal"
+	"github.com/webappio/oauth2/internal"
 )
 
 func newConf(serverURL string) *Config {

@@ -19,7 +19,7 @@ import (
 	"strings"
 	"time"
 
-	"golang.org/x/oauth2"
+	"github.com/webappio/oauth2"
 )
 
 type sdkCredentials struct {

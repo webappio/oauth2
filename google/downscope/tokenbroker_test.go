@@ -8,10 +8,10 @@ import (
 	"context"
 	"fmt"
 
-	"golang.org/x/oauth2/google"
+	"github.com/webappio/oauth2/google"
 
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/google/downscope"
+	"github.com/webappio/oauth2"
+	"github.com/webappio/oauth2/google/downscope"
 )
 
 func ExampleNewTokenSource() {
