@@ -55,6 +55,11 @@ type Config struct {
 	// the OAuth flow, after the resource owner's URLs.
 	RedirectURL string
 
+	// RefreshRedirectURL is the (optional) redirect URL used to obtain
+	// a new refresh token from an endpoint. If present, the redirect_uri
+	// parameter will be added to the refresh request.
+	RefreshRedirectURL string
+	
 	// Scope specifies optional requested permissions.
 	Scopes []string
 }
@@ -267,10 +272,16 @@ func (tf *tokenRefresher) Token() (*Token, error) {
 		return nil, errors.New("oauth2: token expired and refresh token is not set")
 	}
 
-	tk, err := retrieveToken(tf.ctx, tf.conf, url.Values{
+	values := url.Values{
 		"grant_type":    {"refresh_token"},
 		"refresh_token": {tf.refreshToken},
-	})
+	}
+	
+	if tf.conf.RefreshRedirectURL != "" {
+		values["redirect_uri"] = []string{tf.conf.RefreshRedirectURL}
+	}
+	
+	tk, err := retrieveToken(tf.ctx, tf.conf, values)
 
 	if err != nil {
 		return nil, err
